@@ -9,12 +9,13 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
-    def __repr__(self):
-        return '<User %r>' % self.username
+    def __str__(self):
+        return '<User {} {}>'.format(self.first_name, self.email)
 
     def serialize(self):
         return {
             "id": self.id,
+            "first_name": self.first_name,
             "email": self.email,
             # do not serialize the password, its a security breach
         }
